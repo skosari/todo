@@ -2,17 +2,12 @@
 const todoInput = document.querySelector('.todo-input');  
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
+const filterOption = document.querySelector('.filter-todo');
 
-//const trashButton = document.querySelector('.trash-button');
-//const completedButton = document.querySelector('.completed-button');
-//const gridElmButton = document.querySelector('.grid-item');
-
-//Event Listeners - something to happen when you click or hover etc....
+//EVENET LISTENERS - something to happen when you click or hover etc....
 todoButton.addEventListener('click', addTodo);//when clicked run the addTodo function we create below
 todoList.addEventListener('click', deleteCheck);
-//trashButton.addEventListener('click', trashTodo);
-//completedButton.addEventListener('click', completedTodo);
-//gridElmButton.addEventListener("click", addGridElm);//when clicked add a whole new todo list in a new grid element
+filterOption.addEventListener('click', filterTodo);
 
 //Functions
 function addTodo(event){
@@ -47,24 +42,43 @@ function addTodo(event){
 }
 
 //DELETE li ITEM
-function deleteCheck(e){
+function deleteCheck(e) {
   console.log(e.target);
   const item = e.target;
+  const todo = item.parentElement;
+//the parentElement is the e.target we clicked from deleteCheck(e) that was defined in the event listener todoList.addEventListener('click', deleteCheck)
   //DELETE TODO
-  if(item.classList[0] === '.trash-button') {
+  if (item.classList[0] === "trash-button") {
+    todo.classList.add("fall");
+    todo.addEventListener('transitionend', function(){
+      todo.remove();
+    });//Our function waits till the transitionend completes before running its remove function
+  } else if (item.classList[0] === "check-button") {
+    todo.classList.toggle("completed");
   }
 }
 
-/*function completedTodo(event){
+function filterTodo(e){
+  const todos = todoList.childNodes;
+  todos.forEach(function(todo){
+    switch(e.target.value){//This returns the <option value='all or completed or uncompleted in index.html'
+      
+    }
+  })
+}
+
+/*
+function completedTodo(event){
   event.preventDefault();
   //console.log("CHECKED-BUTTON");
-}
+}*/
+/*
 function addGridElm(event){
 //add a whole new todo list in a new grid element
   const newGridElm = document.createElement("div");
   newGridElm.classlist.add("grid-element");
 }
-
+*/
 /*
   //DOM Manipulation Training
   const bckt = document.querySelector(".bckt");

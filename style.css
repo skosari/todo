@@ -86,6 +86,7 @@ ul li:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.3s ease;
 }
 
 .todo li {
@@ -106,6 +107,10 @@ ul li:hover{
 .trash-button{
  
 }
+
+.fa-trash, .fa-check {
+  pointer-events: none;
+}/*This removes the problem when you click on the icon or the button surrounding the icon and it returns the <i> tag vs the button class in cosole.log*/
 
 /*strike out and change color when clicked on*/
 /*ul li.check-button {
@@ -130,7 +135,53 @@ ul li:hover{
 
 
 
-.centerBig{
+/*.centerBig{
   text-align: center;
   font-size: 100px;
+}*/
+
+.completed{
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.fall{
+  transform: translateY(8rem) rotateZ(20deg);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  
+}
+
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+select {
+  color: #fda085;
+  width: 10rem;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  background: #fda085;
+  top: 0;
+  right: 0;
+  padding: .7rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select:hover::after {
+  background: white;
+  color: #ff6f47;
 }
