@@ -58,18 +58,21 @@ function deleteCheck(e) {
 //FILTER ALL CHECKED AND UNCOMPLETED
 function filterTodo(e) {
   const todos = todoList.childNodes;
-  todos.forEach(function(listItem) {
-    switch (e.target.value) {
-      case "all":
-        // console.log(listItem.textContent);//works
-        // console.log(style);//style undefined
-        // break;
-        listItem.style.display = 'flex';//style undefined?     
-      case "completed":
-        listItem.style.display = 'flex';//style undefined?
-      case "uncompleted":
-        listItem.style.display = 'flex';//style undefined?
-        break;
+  todos.forEach(function (todo) {
+    // This is will get rid of your error and will only run on nodes with a style property
+    // Not sure why this guy wrote it this way if I were you I would 
+    // get through this tutorial and start freeCodeCamp!!!
+    if (todo.style != null) {
+      switch (e.target.value) {
+        case 'all':
+          todo.style.display = 'flex'; //style undefined?
+          break;
+        case 'completed':
+          todo.style.display = 'flex'; //style undefined?
+        case 'uncompleted':
+          todo.style.display = 'flex'; //style undefined?
+          break;
+      }
     }
   });
 }
